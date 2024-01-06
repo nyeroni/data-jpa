@@ -14,7 +14,7 @@ public class Member {
     private Long id;
     private String username;
 
-    public Member() {
+    protected Member() {
     }
 
     public Member(String username) {
