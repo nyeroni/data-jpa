@@ -16,7 +16,7 @@ public class MemberJpaRepository {
         return member;
     }
 
-    private Member find(Long id){
+    public Member find(Long id){
         return em.find(Member.class, id);
     }
 }
