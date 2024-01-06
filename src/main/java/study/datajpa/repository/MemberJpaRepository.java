@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import study.datajpa.entity.Member;
 
 @Repository
-public class MemberRepository {
+public class MemberJpaRepository {
 
     @PersistenceContext
     private EntityManager em;
