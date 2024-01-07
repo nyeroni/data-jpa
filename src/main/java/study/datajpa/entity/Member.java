@@ -1,23 +1,19 @@
 package study.datajpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(of = {"id", "username", "age"})
 public class Member {
 
     @Id @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
     private String username;
+    private int age;
 
-    protected Member() {
-    }
 
-    public Member(String username) {
-        this.username = username;
-    }
 }
