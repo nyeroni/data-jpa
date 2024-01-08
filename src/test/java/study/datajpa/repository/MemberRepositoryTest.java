@@ -191,7 +191,7 @@ class MemberRepositoryTest {
 
 
         //when
-        List<UsernameOnly> result = memberRepository.findProjectionsByUsername("m1");
+        List<UsernameOnlyDto> result = memberRepository.findProjectionsByUsername("m1", UsernameOnlyDto.class);
 
         //then
         assertThat(result.size()).isEqualTo(1);
