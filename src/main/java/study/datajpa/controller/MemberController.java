@@ -19,6 +19,10 @@ public class MemberController {
         Member member = memberRepository.findById(id).get();
         return member.getUsername();
     }
+    @GetMapping("/members2/{id}")
+    public String findMember(@PathVariable("id")Member member){
+        return member.getUsername();
+    }
 
     @PostConstruct
     public void init(){
