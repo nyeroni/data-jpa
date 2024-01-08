@@ -54,6 +54,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("select m from Member m")
     List<Member> findMemberEntityGraph();
 
+
     @Lock(LockModeType.WRITE)
     List<Member> findByUsername(String name);
 }
