@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 import study.datajpa.repository.MemberRepository;
 
@@ -28,10 +29,17 @@ public class MemberController {
         return member.getUsername();
     }
 
+//    @GetMapping("/members")
+//    public Page<Member> list(@PageableDefault(size = 12, sort = "username", direction = Sort.Direction.DESC) Pageable pageable){
+//        Page<Member> page = memberRepository.findAll(pageable);
+//        return page;
+//    }
+
     @GetMapping("/members")
-    public Page<Member> list(@PageableDefault(size = 12, sort = "username", direction = Sort.Direction.DESC) Pageable pageable){
+    public Page<MemberDto> list(Pageable pageable){
         Page<Member> page = memberRepository.findAll(pageable);
-        return page;
+        Page<MemberDto> pageDto = page.map(MemberDto::new);
+        return pageDto;
     }
 
     @PostConstruct
