@@ -1,11 +1,9 @@
 package study.datajpa.repository;
 
+import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
@@ -47,14 +45,15 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @EntityGraph(attributePaths = {"team"})
     List<Member> findAll();
 
-//    @EntityGraph(attributePaths = {"team"})
-//    @Query("select m from Member m")
-//    List<Member> findMemberEntityGraph();
 
-    @EntityGraph(attributePaths = {"team"})
-    List<Member> findByUsername(@Param("username") String username);
+//
+//    @EntityGraph(attributePaths = {"team"})
+//    List<Member> findByUsername(@Param("username") String username);
 
     @EntityGraph("Member.all")
     @Query("select m from Member m")
     List<Member> findMemberEntityGraph();
+
+    @Lock(LockModeType.WRITE)
+    List<Member> findByUsername(String name);
 }
